@@ -1,0 +1,17 @@
+[workspace]
+
+[package]
+name = "learning_switch"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+switch_program_sdk = { path = "../../switch_program_sdk" }
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true

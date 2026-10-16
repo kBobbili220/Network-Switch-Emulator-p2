@@ -1,0 +1,12 @@
+[package]
+name = "switch_program_sdk"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+switch_program_types = { path = "../switch_program_types" }
+postcard = { version = "1", default-features = false, features = ["alloc"] }
+serde = { version = "1", default-features = false, features = ["derive", "alloc"] }

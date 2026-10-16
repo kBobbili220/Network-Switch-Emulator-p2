@@ -1,0 +1,217 @@
+[world]
+name = "a2p1-ring-020"
+seed = 20
+version = 1
+family = "ring_chords"
+diameter = 4
+generator = 2
+
+[params]
+link_capacity_mbps = 10
+link_latency_us = 500
+queue_capacity_bytes = 40000
+warmup_ms = 1000
+duration_ms = 40000
+delivery_floor_pct = 95.0
+buffer_budget_packets = 40
+packet_size_bytes = 1000
+control_delay_us = 2000
+
+[[switch]]
+id = 0
+as_id = 0
+
+[[switch]]
+id = 1
+as_id = 0
+
+[[switch]]
+id = 2
+as_id = 0
+
+[[switch]]
+id = 3
+as_id = 0
+
+[[switch]]
+id = 4
+as_id = 0
+
+[[switch]]
+id = 5
+as_id = 0
+
+[[switch]]
+id = 6
+as_id = 0
+
+[[switch]]
+id = 7
+as_id = 0
+
+[[switch]]
+id = 8
+as_id = 0
+
+[[switch]]
+id = 9
+as_id = 0
+
+[[link]]
+a = 3
+b = 6
+capacity_mbps = 10
+
+[[link]]
+a = 1
+b = 8
+capacity_mbps = 10
+
+[[link]]
+a = 8
+b = 9
+capacity_mbps = 10
+
+[[link]]
+a = 0
+b = 4
+capacity_mbps = 10
+
+[[link]]
+a = 7
+b = 5
+capacity_mbps = 10
+
+[[link]]
+a = 8
+b = 5
+capacity_mbps = 10
+
+[[link]]
+a = 9
+b = 6
+capacity_mbps = 10
+
+[[link]]
+a = 6
+b = 2
+capacity_mbps = 10
+
+[[link]]
+a = 5
+b = 9
+capacity_mbps = 10
+
+[[link]]
+a = 9
+b = 3
+capacity_mbps = 10
+
+[[link]]
+a = 7
+b = 1
+capacity_mbps = 10
+
+[[link]]
+a = 4
+b = 7
+capacity_mbps = 6
+
+[[link]]
+a = 4
+b = 3
+capacity_mbps = 10
+
+[[link]]
+a = 2
+b = 0
+capacity_mbps = 10
+
+[[app]]
+id = 100
+switch = 0
+prefix = "10.0.142.0/24"
+
+[[app]]
+id = 101
+switch = 1
+prefix = "10.0.113.0/24"
+preset = "netflix"
+law = "aimd"
+rate_mbps = 4.5
+peer = 104
+
+[[app]]
+id = 102
+switch = 2
+prefix = "10.0.94.0/24"
+
+[[app]]
+id = 103
+switch = 3
+prefix = "10.0.225.0/24"
+
+[[app]]
+id = 104
+switch = 4
+prefix = "10.0.157.0/24"
+
+[[app]]
+id = 105
+switch = 5
+prefix = "10.0.212.0/24"
+
+[[app]]
+id = 106
+switch = 6
+prefix = "10.0.117.0/24"
+preset = "fortnite"
+law = "aimd"
+rate_mbps = 0.6000000000000001
+peer = 109
+size_bytes = 200
+
+[[app]]
+id = 107
+switch = 7
+prefix = "10.0.3.0/24"
+preset = "steam"
+law = "rate_match"
+peer = 102
+
+[[app]]
+id = 108
+switch = 8
+prefix = "10.0.34.0/24"
+preset = "amazon"
+law = "rate_match"
+rate_mbps = 7.0
+on_ms = 10000
+off_ms = 8000
+start_ms = 600
+peer = 100
+
+[[app]]
+id = 109
+switch = 9
+prefix = "10.0.236.0/24"
+preset = "fortnite"
+law = "aimd"
+rate_mbps = 0.6000000000000001
+peer = 106
+size_bytes = 200
+
+[workload]
+kind = "mixed"
+size_bytes = 1000
+
+[floors]
+goodput_pct = 50.0
+utilization_pct = 55.0
+share_pct = 40.0
+window_ms = 1000
+settling_ms = 2000
+bottlenecks = [[
+    7,
+    4,
+]]

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>competitive_net_sim — log viewer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>simlog viewer</h1>
+    <div id="controls">
+      <button id="step-back" title="Previous event">⏮</button>
+      <button id="play">▶</button>
+      <button id="step-fwd" title="Next event">⏭</button>
+      <input type="range" id="scrubber" min="0" max="1000" value="0">
+      <span id="time">0.000s</span>
+      <label>speed ×
+        <input type="number" id="speed" value="1" step="any" min="0" style="width:5rem">
+      </label>
+      <label>summary @
+        <input type="number" id="threshold" min="1" value="20" style="width:4rem">
+        pkts/link/frame
+      </label>
+    </div>
+  </header>
+
+  <div id="dropzone">drop a .simlog here</div>
+
+  <main>
+    <canvas id="topology" width="900" height="600"></canvas>
+    <aside id="inspector" hidden>
+      <header>
+        <h2 id="inspector-title">switch</h2>
+        <button id="inspector-close">×</button>
+      </header>
+      <section data-mode="packet" hidden>
+        <h3>Headers</h3>
+        <div id="inspector-packet"></div>
+      </section>
+      <section data-mode="link" hidden>
+        <h3>Packets on link</h3>
+        <div id="inspector-link"></div>
+      </section>
+      <section data-mode="switch">
+        <h3>Addresses</h3>
+        <div id="inspector-addresses"></div>
+      </section>
+      <section data-mode="switch">
+        <h3>Ports</h3>
+        <div id="inspector-ports"></div>
+      </section>
+      <section data-mode="switch">
+        <h3>TinyVM program</h3>
+        <pre id="inspector-program">(none)</pre>
+      </section>
+      <section data-mode="switch">
+        <h3>Tables</h3>
+        <div id="inspector-tables"></div>
+      </section>
+      <section data-mode="switch">
+        <h3>Register / counter arrays</h3>
+        <div id="inspector-arrays"></div>
+      </section>
+    </aside>
+  </main>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

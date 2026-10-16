@@ -1,0 +1,33 @@
+[workspace]
+
+[package]
+name = "viewer"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[package.metadata.wasm-pack.profile.release]
+# wasm-opt's bundled binaryen on this toolchain rejects bulk-memory ops.
+# We don't need wasm-opt; release builds are already small enough.
+wasm-opt = false
+
+
+[dependencies]
+# The viewer pulls in the whole simulator. Eventually the web page will
+# run sims in-browser too, so sharing one code base is exactly what we
+# want. The `wasm` feature (which pulls wasmtime, a host-side wasm
+# runtime that doesn't build for browser targets) stays disabled.
+competitive_net_sim = { path = ".." }
+switch_program_types = { path = "../switch_program_types", features = ["std"] }
+postcard = { version = "1", features = ["alloc"] }
+serde = { version = "1", features = ["derive"] }
+wasm-bindgen = "0.2"
+serde-wasm-bindgen = "0.6"
+js-sys = "0.3"
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true

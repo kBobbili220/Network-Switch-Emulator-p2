@@ -1,0 +1,19 @@
+[workspace]
+
+[package]
+name = "fair_switch"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+switch_program_sdk = { path = "../../switch_program_sdk" }
+serde = { version = "1", features = ["derive"] }
+postcard = { version = "1", features = ["alloc"] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true

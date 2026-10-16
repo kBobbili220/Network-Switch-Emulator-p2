@@ -17,6 +17,7 @@ src/  switch_program_types/  switch_program_sdk/   the simulator and the SDK
 examples/hello_switch/       the smallest program: runs, forwards nothing, every customer starves
 examples/learning_switch/    55 lines: one static route on the first punt. A shape to copy, not a solution
 examples/load_report/        measures the load on each link and shares it with every switch. Moves nothing
+examples/fair_switch/        complete A2 switch: isolated DRR queues and coordinated detour routing
 worlds/practice/             a2p1-*: one bottleneck (3 worlds)   a2p2-*: several, with detours (2 worlds)
 viewer/                      the Assignment 1 browser replay: packets moving and dying, not queues
 docs/                        simulator reference, and the floors
@@ -33,6 +34,9 @@ cargo build --release
 ```
 
 ## Build your program
+
+The implemented A2 switch is in [`examples/fair_switch`](examples/fair_switch/README.md).
+Its README includes build commands, the design card, and the practice-world test runner.
 
 Your program is its own crate, like `examples/hello_switch/`. Build it to
 wasm and hand the simulator the file:
